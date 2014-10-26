@@ -1,0 +1,17 @@
+{
+    "name": "heroku-force-ssl-sample",
+    "description": "A sample Heroku app that shows how to use the nginx buildpack to require SSL for all connections ",
+    "website": "https://github.com/gregburek/heroku-force-ssl-sample",
+    "repository": "https://github.com/gregburek/heroku-force-ssl-sample",
+    "success_url": "/",
+    "keywords": [
+        "sample",
+        "nginx",
+        "buildpacks",
+        "ssl",
+        "secure"
+    ],
+    "env": {
+        "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git"
+    }
+}
