@@ -116,6 +116,7 @@ To git@heroku.com:frozen-fortress-6701.git
 < Content-Type: text/html
 < Content-Length: 178
 < Location: https://frozen-fortress-6701.herokuapp.com/
+< Strict-Transport-Security: max-age=31536000
 < Via: 1.1 vegur
 <
 * Ignoring the response-body
@@ -148,6 +149,7 @@ To git@heroku.com:frozen-fortress-6701.git
 < Content-Type: text/plain
 < Transfer-Encoding: chunked
 < Status: 200 OK
+< Strict-Transport-Security: max-age=31536000
 < Via: 1.1 vegur
 <
 * Connection #1 to host frozen-fortress-6701.herokuapp.com left intact
@@ -175,6 +177,7 @@ hello world%
 < Content-Type: text/plain
 < Transfer-Encoding: chunked
 < Status: 200 OK
+< Strict-Transport-Security: max-age=31536000
 < Via: 1.1 vegur
 <
 * Connection #0 to host frozen-fortress-6701.herokuapp.com left intact
