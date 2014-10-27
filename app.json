@@ -1,15 +1,17 @@
 {
-  "name": "heroku-force-ssl-sample",
-  "description": "A sample Heroku app that shows how to use the nginx buildpack to require TLS and basic authentication for all connections ",
-  "website": "https://github.com/gregburek/heroku-force-ssl-sample",
-  "repository": "https://github.com/gregburek/heroku-force-ssl-sample",
+  "name": "heroku-tls-auth-nginx-sample",
+  "description": "A sample Heroku app that shows how to use the nginx buildpack to require TLS and basic authentication",
+  "website": "https://github.com/gregburek/heroku-tls-auth-nginx-sample",
+  "repository": "https://github.com/gregburek/heroku-tls-auth-nginx-sample",
   "success_url": "/",
   "keywords": [
     "sample",
     "nginx",
     "buildpacks",
     "ssl",
-    "secure"
+    "secure",
+    "tls",
+    "auth"
     ],
   "env": {
     "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git",

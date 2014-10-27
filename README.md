@@ -1,4 +1,9 @@
-# heroku-force-ssl-sample
+# heroku-tls-auth-nginx-sample
+
+This repo shows several ways that you may use the nginx buildpack to add TLS
+and basic authentication to your Heroku app.
+
+## HTTPS Redirects
 
 Configuring your Heroku app so that it will redirect insecure HTTP traffic to an
 HTTPS endpoint can be finicky and is language/framework specific.
@@ -25,16 +30,49 @@ your apps. Custom domain names require custom SSL certs, which are available
 from traditional SSL vendors or from Heroku addon [Expedited
 SSL](https://www.expeditedssl.com/)
 
+## HSTS Headers
+
+By adding a [HTTP Strict Transport Security
+(HSTS)](http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) header to
+your app's HTTP response, modern clients will remember that your site should
+only be accessed via HTTPS.
+
+Add this line to your `nginx.conf.erb`:
+```
+add_header Strict-Transport-Security max-age=31536000;
+```
+
+## HTTP Basic Authentication
+
+With a `.profile.d` script, it is possible to generate an `.htpasswd` file on
+dyno boot that contains a username and password in config vars. This file can
+then be used by nginx for basic authentication.
+
+In `.profile.d/gen-htpasswd.sh`:
+
+```
+#!/usr/bin/env bash
+set -ex
+
+echo -e "${USERNAME}:$(perl -le 'print crypt($ENV{"PASSWORD"}, rand(0xffffffff));')" > /app/config/basic.htpasswd
+```
+
+In `nginx.conf.erb` location section:
+```
+auth_basic              "Restricted";
+auth_basic_user_file    basic.htpasswd;
+```
+
 ## Try it out on Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/gregburek/heroku-force-ssl-sample)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/gregburek/heroku-tls-auth-nginx-sample)
 
 
 ## Manual set up
 
 ```bash
-> git clone https://github.com/gregburek/heroku-force-ssl-sample
-> cd heroku-force-ssl-sample
+> git clone https://github.com/gregburek/heroku-tls-auth-nginx-sample
+> cd heroku-tls-auth-nginx-sample
 > heroku create
 Creating frozen-fortress-6701... done, stack is cedar
 https://frozen-fortress-6701.herokuapp.com/ | git@heroku.com:frozen-fortress-6701.git
